@@ -13,9 +13,9 @@ public interface UserService {
 
     void deleteUser(String username);
 
-    void addAdmin(String username);
-
     void unblockUser(User user);
 
-    void blockUser(String username);
+    void blockUser(User user);
+
+    //void updateUser(User user);
 }

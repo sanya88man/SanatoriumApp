@@ -1,8 +1,9 @@
 package by.martysiuk.sanatoriumApp.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -13,8 +14,8 @@ public class Role {
 
     private String role;
 
-    @ManyToMany(mappedBy = "roleSet")
-    private List<User> userList;
+    @ManyToMany(mappedBy = "roleSet", cascade = CascadeType.ALL)
+    private Set<User> userSet = new HashSet<>();
 
     public Role() {}
 
@@ -23,12 +24,12 @@ public class Role {
         if (this == o) return true;
         if (!(o instanceof Role)) return false;
         Role role1 = (Role) o;
-        return getId() == role1.getId() && Objects.equals(getRole(), role1.getRole()) && Objects.equals(getUserList(), role1.getUserList());
+        return getId() == role1.getId() && Objects.equals(getRole(), role1.getRole()) && Objects.equals(getUserSet(), role1.getUserSet());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getRole(), getUserList());
+        return Objects.hash(getId(), getRole(), getUserSet());
     }
 
     @Override
@@ -39,12 +40,12 @@ public class Role {
                 '}';
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public Set<User> getUserSet() {
+        return userSet;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUserSet(Set<User> userList) {
+        this.userSet = userList;
     }
 
     public Role(String role) {
