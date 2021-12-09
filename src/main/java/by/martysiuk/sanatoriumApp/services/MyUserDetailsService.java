@@ -1,6 +1,6 @@
 package by.martysiuk.sanatoriumApp.services;
 
-import by.martysiuk.sanatoriumApp.dao.UserRepo;
+import by.martysiuk.sanatoriumApp.repositories.UserRepo;
 import by.martysiuk.sanatoriumApp.models.Role;
 import by.martysiuk.sanatoriumApp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -16,6 +16,4 @@ public interface UserService {
     void unblockUser(User user);
 
     void blockUser(User user);
-
-    //void updateUser(User user);
 }

@@ -1,6 +1,6 @@
 package by.martysiuk.sanatoriumApp.services;
 
-import by.martysiuk.sanatoriumApp.dao.RoleRepo;
+import by.martysiuk.sanatoriumApp.repositories.RoleRepo;
 import by.martysiuk.sanatoriumApp.models.Role;
 import by.martysiuk.sanatoriumApp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +19,24 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void addAdmin(User user) {
-        Set<Role> roleSet = user.getRoleSet();
+    public void addAdminRole(User user) {
         Role userRole = roleRepo.findByRole("ROLE_ADMIN");
-        //Role userRole = roleRepo.getById(1);
+        setRole(userRole, user);
+    }
+
+    @Override
+    public void addUserRole(User user) {
+        Role userRole = roleRepo.findByRole("ROLE_USER");
+        setRole(userRole, user);
+    }
+
+    public void setRole(Role userRole, User user) {
+        Set<Role> roleSet = user.getRoleSet();
         roleSet.add(userRole);
         user.setRoleSet(roleSet);
-
         Set<User> userSet = new HashSet<>();
         userSet.add(user);
         userRole.setUserSet(userSet);
-        //roleRepo.updateRole(userRole.getRole(), userRole.getId());
         roleRepo.save(userRole);
     }
 }

@@ -14,7 +14,7 @@ public class Role {
 
     private String role;
 
-    @ManyToMany(mappedBy = "roleSet", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "roleSet", cascade = CascadeType.REFRESH)
     private Set<User> userSet = new HashSet<>();
 
     public Role() {}

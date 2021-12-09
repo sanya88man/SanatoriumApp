@@ -40,13 +40,13 @@ public class UsersController {
             return "users/errAddUser";
         }
         userService.saveUser(user);
+        roleService.addUserRole(user);
         return "users/registerSuccess";
     }
 
     @GetMapping("/admin/users")
     public String showUsers(Model model, @ModelAttribute("user") User user) {
         model.addAttribute("listUsers", userService.showUsers());
-        //model.addAttribute("listRoles", userService.showRoles());
         return "users/showUsers";
     }
 
@@ -65,7 +65,7 @@ public class UsersController {
         if (user == null) {
             return "users/userNotExist";
         }
-        roleService.addAdmin(user);
+        roleService.addAdminRole(user);
         return "redirect:/admin/users";
     }
 

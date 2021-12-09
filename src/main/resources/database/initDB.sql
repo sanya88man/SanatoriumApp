@@ -12,7 +12,6 @@ create table roles (
     id int not null,
     role varchar (45) not null,
     primary key (id),
-
 );
 
 create table users_roles (
