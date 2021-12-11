@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Sign Up</title>
@@ -8,21 +8,81 @@
   <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-<body style="background-color: #e9ecef; margin-top: 90px">
-<div class="container text-center">
+<body style="background-color: #e9ecef">
+
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <h5>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" style="margin-left: 250px">
+            <a href="/"><img src="../../images/img.png" height="130" width="180"></a>
+          </li>
+          <li class="nav-item" style="margin-top: 60px; margin-left: 130px">
+            <a class="nav-link" href="/routs">Номера <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown" style="margin-top: 60px">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Лечение
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/routs">Диагностика</a>
+              <a class="dropdown-item" href="/user/tickets/showMyTickets">Кабинет рефлексотерапии</a>
+              <a class="dropdown-item" href="/admin/tickets">Озонотерапия</a>
+              <a class="dropdown-item" href="/admin/users">Стоматологический Кабинет</a>
+              <a class="dropdown-item" href="/admin/routs/edit">Минеральные процедуры</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown" style="margin-top: 60px">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Услуги
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/routs">Заказать билет</a>
+              <a class="dropdown-item" href="/user/tickets/showMyTickets">Мои билеты</a>
+              <a class="dropdown-item" href="/admin/tickets">Просмотреть все билеты</a>
+              <a class="dropdown-item" href="/admin/users">Управление пользователями</a>
+              <a class="dropdown-item" href="/admin/routs/edit">Редактировать маршруты</a>
+            </div>
+          </li>
+          <li class="nav-item" style="margin-top: 60px">
+            <a class="nav-link" href="/routs">Контакты <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item" style="margin-left: 300px; margin-top: 60px">
+            <a class="nav-link disabled" href="#">[[${#httpServletRequest.remoteUser}]]</a>
+          </li>
+          <li class="nav-item" style="margin-top: 60px">
+            <a class="nav-link" href="/auth">Вход</a>
+          </li>
+          <li class="nav-item" style="margin-top: 60px">
+            <div sec:authorize="hasRole('USER')">
+              <a class="nav-link" href="/logout">Выйти</a>
+            </div>
+          </li>
+        </ul>
+      </h5>
+    </div>
+
+  </nav>
+</div>
+
+<div class="container text-center" style="margin-top: 50px">
 
   <div style="margin-left:850px ">
-    <form th:action="@{/}" method="get">
+    <form th:action="@{/auth}" method="get">
       <div>
-        <button type="submit" class="btn btn-primary">Вернуться на главную</button>
+        <button type="submit" class="btn btn-primary">Вернуться</button>
       </div>
     </form>
   </div>
   </br>
-  </br>
 
   <div>
-    <h1>Регистрация Пользователя</h1>
+    <h1 class="text-info">Регистрация Пользователя</h1>
   </div>
   </br>
 

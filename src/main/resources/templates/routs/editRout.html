@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List Users</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: #e9ecef;">
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <img src="../../../images/logo1.png" height="40" width="40">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/routs">Главная <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Меню
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/routs">Заказать билет</a>
+                        <a class="dropdown-item" href="/user/tickets/showMyTickets">Мои билеты</a>
+                        <div class="dropdown-divider"></div>
+                        <div sec:authorize="hasRole('ADMIN')">
+                            <a class="dropdown-item" href="/admin/tickets">Просмотреть все билеты</a>
+                            <a class="dropdown-item" href="/admin/users">Управление пользователями</a>
+                            <a class="dropdown-item" href="/admin/routs/edit">Редактировать маршруты</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item" style="margin-left: 1050px">
+                    <a class="nav-link disabled" href="#">Вы вошли как, [[${#httpServletRequest.remoteUser}]]</a>
+                </li>
+                <li class="nav-item" style="margin-left: auto">
+                    <a class="nav-link" href="/logout">Выйти</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container text-center" style="margin-top: 40px">
+
+    <div>
+        <h2 style="color: lightslategray">Маршрут</h2>
+    </div>
+    </br>
+
+    <form th:method="patch" th:action="@{/admin/routs/{id}(id = ${rout.getId()})}" th:object="${rout}"
+        style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+
+            <div class="form-group row">
+                <label for="name" class="col-4 col-form-label">Название: </label>
+                <div class="col-6">
+                    <input type="text" th:field="*{name}" class="form-control" id="name"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="price" class="col-4 col-form-label">Цена: </label>
+                <div class="col-6">
+                    <input type="text" th:field="*{price}" class="form-control" id="price"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price error</div>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-warning">Редактировать</button>
+            </div>
+
+        </div>
+    </form>
+
+    </br>
+
+</div>
+
+</body>
+</html>

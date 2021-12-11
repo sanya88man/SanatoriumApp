@@ -24,6 +24,11 @@ public class UsersController {
         return "users/index";
     }
 
+    @GetMapping("/auth")
+    public String auth() {
+        return "users/auth";
+    }
+
     @GetMapping("/403")
     public String error403() {
         return "users/403";

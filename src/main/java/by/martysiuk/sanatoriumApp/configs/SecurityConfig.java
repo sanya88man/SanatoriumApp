@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/routs").authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/routs")
+                .formLogin().defaultSuccessUrl("/")
                 .and()
                 .logout().logoutSuccessUrl("/").permitAll();
 

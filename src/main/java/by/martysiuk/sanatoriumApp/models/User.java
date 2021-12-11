@@ -18,6 +18,9 @@ public class User {
 
     private boolean enabled;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    Set<Order> orders = new HashSet<>();
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -31,6 +34,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     public Set<Role> getRoleSet() {
