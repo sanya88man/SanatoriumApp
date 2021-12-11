@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Sanatorium</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body style="background-color: #e9ecef;">
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h5>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" style="margin-left: 250px">
+                        <a href="/"><img src="../../images/logo.png" height="130" width="180"></a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px; margin-left: 100px">
+                        <a class="nav-link" href="/rooms">Номера <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-top: 60px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Лечение
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/health/diagnostic">Диагностика</a>
+                            <a class="dropdown-item" href="/health/reflect">Кабинет Рефлексотерапии</a>
+                            <a class="dropdown-item" href="/health/ozone">Озонотерапия</a>
+                            <a class="dropdown-item" href="/health/dentist">Стоматологический Кабинет</a>
+                            <a class="dropdown-item" href="/health/mineral">Минеральные Процедуры</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-top: 60px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Услуги
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/services/bar">Кафе и Бары</a>
+                            <a class="dropdown-item" href="/services/swimmingPool">Бассейн</a>
+                            <a class="dropdown-item" href="/services/sauna">Банный Комплекс</a>
+                            <a class="dropdown-item" href="/services/spa">SPA</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <a class="nav-link" href="/contacts">Контакты <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 53px; margin-left: 40px">
+                        <p><small>+375-17-97-20400</br>
+                            +375-17-97-21580 <span class="sr-only">(current)</span></small></p>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-left: 130px; margin-top: 60px">
+                        <div sec:authorize="hasRole('USER')">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                               data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">[[${#httpServletRequest.remoteUser}]]
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/user/myOrders">Мои заказы</a>
+                                <div class="dropdown-divider"></div>
+                                <div sec:authorize="hasRole('ADMIN')">
+                                    <a class="dropdown-item" href="/admin/orders">Просмотреть все заказы</a>
+                                    <a class="dropdown-item" href="/admin/users">Управление пользователями</a>
+                                    <a class="dropdown-item" href="/admin/routs/edit">Редактировать комнаты</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <a class="nav-link" href="/auth">Вход</a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <div sec:authorize="hasRole('USER')">
+                            <a class="nav-link" href="/logout">Выйти</a>
+                        </div>
+                    </li>
+                </ul>
+            </h5>
+        </div>
+    </nav>
+</div>
+</br>
+
+
+<h3 class="card-title text-info" style="text-align: center">Рефлексотерапия</h3>
+</br>
+
+<div style="width: 940px; margin-left: auto; margin-right: auto">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../images/refl.png" class="d-block w-100" alt="rooms"
+                     style="max-height: 500px; width: 930px;">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../images/refl1.png" class="d-block w-100" alt="health"
+                     style="max-height: 500px; width: 930px;">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../images/refl2.png" class="d-block w-100" alt="spa"
+                     style="max-height: 500px; width: 930px;">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Предыдущий</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Следующий</span>
+        </a>
+    </div>
+</div>
+</br>
+</br>
+
+<p style="margin-left: 200px; margin-right: 200px; text-align: justify">
+    Метод рефлексотерапии самый эффективный и общепризнанный,
+    ведь он позволяет достигнуть нужного лечебного эффекта при большинстве
+    заболеваний с помощью стимулирования, регулирования и координирования деятельности нервной системы.
+    Родиной рефлексотерапии считается Китай. Первые письменные упоминания о
+    "чжен-цзю терапии" (точечное воздействие) относятся к пятому веку до н.э. В
+    Европу метод проник в 17-ом веке н.э. На Востоке этот метод лечения является
+    основным, но и на Западе он занял свое достойное место. Показания для рефлексотерапии
+    крайне широки, а при некоторых заболеваниях или симптомах рефлексотерапия является единственным,
+    приводящим к выздоровлению методом. Очень часто сочетание рефлексотерапии с лечением
+    медикаментозными средствами приводит к хорошим результатам при заболеваниях позвоночника
+    и суставов, сердечно-сосудистой системы, легких, почек и т.д.
+    Во время лечения с помощью данного метода происходит стимуляция рефлекторных зон нервной
+    системы, при котором возникающие импульсы передаются в соответствующие нервные центры.
+    А нервная система в свою очередь посылает к пораженному органу или органам импульсы,
+    активизирующие системы самовосстановления.
+</p>
+
+</br>
+<p style="text-align: center">Контакты кабинета рефлексотерапии:
+    </br>
+
+    Из Беларуси: 8 (01797) 41 219, из других стран - 8 10 375 1797 41 219
+    </br>
+
+    e-mail: refl@comp.by
+</p>
+
+</br>
+
+</br>
+
+</body>
+</html>

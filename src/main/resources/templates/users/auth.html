@@ -21,8 +21,8 @@
                     <li class="nav-item" style="margin-left: 250px">
                         <a href="/"><img src="../../images/logo.png" height="130" width="180"></a>
                     </li>
-                    <li class="nav-item" style="margin-top: 60px; margin-left: 130px">
-                        <a class="nav-link" href="/routs">Номера <span class="sr-only">(current)</span></a>
+                    <li class="nav-item" style="margin-top: 60px; margin-left: 100px">
+                        <a class="nav-link" href="/rooms">Номера <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown" style="margin-top: 60px">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,14 +45,31 @@
                             <a class="dropdown-item" href="/services/swimmingPool">Бассейн</a>
                             <a class="dropdown-item" href="/services/sauna">Банный Комплекс</a>
                             <a class="dropdown-item" href="/services/spa">SPA</a>
-                            <a class="dropdown-item" href="/services/rent">Прокат</a>
                         </div>
                     </li>
                     <li class="nav-item" style="margin-top: 60px">
-                        <a class="nav-link" href="/routs">Контакты <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/contacts">Контакты <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item" style="margin-left: 300px; margin-top: 60px">
-                        <a class="nav-link disabled" href="#">[[${#httpServletRequest.remoteUser}]]</a>
+                    <li class="nav-item" style="margin-top: 53px; margin-left: 40px">
+                        <p><small>+375-17-97-20400</br>
+                            +375-17-97-21580 <span class="sr-only">(current)</span></small></p>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-left: 130px; margin-top: 60px">
+                        <div sec:authorize="hasRole('USER')">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                               data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">[[${#httpServletRequest.remoteUser}]]
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/user/myOrders">Мои заказы</a>
+                                <div class="dropdown-divider"></div>
+                                <div sec:authorize="hasRole('ADMIN')">
+                                    <a class="dropdown-item" href="/admin/orders">Просмотреть все заказы</a>
+                                    <a class="dropdown-item" href="/admin/users">Управление пользователями</a>
+                                    <a class="dropdown-item" href="/admin/routs/edit">Редактировать комнаты</a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item" style="margin-top: 60px">
                         <a class="nav-link" href="/auth">Вход</a>
@@ -67,6 +84,8 @@
         </div>
     </nav>
 </div>
+
+
 
 <div class="container text-center" style="margin-top: 70px">
     <h1 class="text-info">Вход в личный кабинет</h1>

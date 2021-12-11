@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Sanatorium</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body style="background-color: lightgoldenrodyellow">
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h5>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" style="margin-left: 250px">
+                        <a href="/"><img src="../../images/logo.png" height="130" width="180"></a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px; margin-left: 100px">
+                        <a class="nav-link" href="/rooms">Номера <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-top: 60px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Лечение
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/health/diagnostic">Диагностика</a>
+                            <a class="dropdown-item" href="/health/reflect">Кабинет Рефлексотерапии</a>
+                            <a class="dropdown-item" href="/health/ozone">Озонотерапия</a>
+                            <a class="dropdown-item" href="/health/dentist">Стоматологический Кабинет</a>
+                            <a class="dropdown-item" href="/health/mineral">Минеральные Процедуры</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-top: 60px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Услуги
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/services/bar">Кафе и Бары</a>
+                            <a class="dropdown-item" href="/services/swimmingPool">Бассейн</a>
+                            <a class="dropdown-item" href="/services/sauna">Банный Комплекс</a>
+                            <a class="dropdown-item" href="/services/spa">SPA</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <a class="nav-link" href="/contacts">Контакты <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 53px; margin-left: 40px">
+                        <p><small>+375-17-97-20400</br>
+                            +375-17-97-21580 <span class="sr-only">(current)</span></small></p>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-left: 130px; margin-top: 60px">
+                        <div sec:authorize="hasRole('USER')">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                               data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">[[${#httpServletRequest.remoteUser}]]
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/user/myOrders">Мои заказы</a>
+                                <div class="dropdown-divider"></div>
+                                <div sec:authorize="hasRole('ADMIN')">
+                                    <a class="dropdown-item" href="/admin/orders">Просмотреть все заказы</a>
+                                    <a class="dropdown-item" href="/admin/users">Управление пользователями</a>
+                                    <a class="dropdown-item" href="/admin/routs/edit">Редактировать комнаты</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <a class="nav-link" href="/auth">Вход</a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <div sec:authorize="hasRole('USER')">
+                            <a class="nav-link" href="/logout">Выйти</a>
+                        </div>
+                    </li>
+                </ul>
+            </h5>
+        </div>
+    </nav>
+</div>
+</br>
+
+
+<h3 class="card-title text-info" style="text-align: center">Услуги SPA центра</h3>
+</br>
+
+<div class="card border-warning mb-3"
+     style="width: 700px; margin-left: auto; margin-right: auto">
+  <img src="../../images/spa1.png" class="card-img-top" alt="0"
+       style="height: 350px">
+  <div class="card-body">
+    <h5 class="card-title">Гавайский  "ЛОМИ-ЛОМИ НУИ"</h5>
+    <p class="card-text" style="text-align: justify">Ломи-Ломи Нуи – древнейший ритуал, родом с Гавайских островов. .
+        Это необычный ритуал – это священная форма работы с телом.
+        Он включает применение разнообразных приемов, заключающихся в плавных
+        и длинных движениях рук, в танцующей технике, специальном дыхании,
+        помогающем сохранению и движению энергии.</p>
+    <p class="card-text"><small class="text-muted">90 мин - 110,00 руб</small></p>
+  </div>
+</div>
+</br>
+</br>
+
+<div class="card border-warning mb-3"
+     style="width: 700px; margin-left: auto; margin-right: auto">
+    <img src="../../images/spa2.png" class="card-img-top" alt="0"
+         style="height: 350px">
+    <div class="card-body">
+        <h5 class="card-title">"Стоун" Массаж</h5>
+        <p class="card-text" style="text-align: justify">Это релаксирующий ритуал горячими камнями.
+            Техника направлена на достижение максимального психологического расслабления,
+            снятия явлений застарелой спастики  мышечных тканей, усиление липолиза, т.е. утилизацию жира,
+            и активизацию трофических процессов. Стоун–ритуал способствует разблокировке позитивных
+            воспоминаний, обретению эмоционального, ментального, физического и духовного равновесия.
+        </p>
+        <p class="card-text"><small class="text-muted">90 мин - 97,00 руб</small></p>
+    </div>
+</div>
+</br>
+</br>
+
+
+<div class="card border-warning mb-3"
+     style="width: 700px; margin-left: auto; margin-right: auto">
+    <img src="../../images/spa3.png" class="card-img-top" alt="0"
+         style="height: 370px">
+    <div class="card-body">
+        <h5 class="card-title">"Традиционный Тайский Массаж"</h5>
+        <p class="card-text" style="text-align: justify">Это своеобразная форма йоги,
+            только в этом случае всю работу за Вас выполняет специалист СПА.
+            Ладонями рук, ступнями и силой всего тела выполняются упражнения,
+            расслабляющие мышцы и укрепляющие связки, стимулирующие биологически активные точки.
+            Ритуал улучшает гибкость тела и увеличивает диапазон движений,
+            оказывает сильное успокаивающее воздействие. Снижение напряжения,
+            коррекция движения суставов замедляют выработку адреналина,
+            уравновешивая нейровегетативную систему.
+        </p>
+        <p class="card-text"><small class="text-muted">90 мин - 105,00 руб</small></p>
+    </div>
+</div>
+</br>
+</br>
+
+<div class="card border-warning mb-3"
+     style="width: 700px; margin-left: auto; margin-right: auto">
+    <img src="../../images/spa4.png" class="card-img-top" alt="0"
+         style="height: 370px">
+    <div class="card-body">
+        <h5 class="card-title">"АЮРВЕДИЧЕСКИЙ  АБХЪЯНГА"</h5>
+        <p class="card-text" style="text-align: justify"> Абхьянга– это классическая и очень древняя процедура
+            Аюрведы. Она оздоравливает все системы органов,
+            прорабатывает разные группы мышц,
+            расслабляет тело. Организм приходит в здоровый тонус.
+            Активно выводятся токсины. Улучшается кровоснабжение всех органов.
+            Уходит чувство постоянной усталости. Нормализуется сон.
+            Улучшается состояние суставов и сухожилий.
+            Процессы старения значительно замедляются. Кожа становится подтянутой, эластичной.
+        </p>
+        <p class="card-text"><small class="text-muted">70 мин - 91,00 руб</small></p>
+    </div>
+</div>
+</br>
+</br>
+
+<p style="text-align: center">Контакты SPA-центра:
+    </br>
+
+    Из Беларуси: 8 (01797) 41 219, из других стран - 8 10 375 1797 41 219
+    </br>
+
+    e-mail: spa@comp.by
+</p>
+
+</br>
+
+</body>
+</html>

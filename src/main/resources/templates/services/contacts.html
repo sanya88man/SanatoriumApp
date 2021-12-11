@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Sanatorium</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body style="background-color: #e9ecef;">
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h5>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" style="margin-left: 250px">
+                        <a href="/"><img src="../../images/logo.png" height="130" width="180"></a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px; margin-left: 100px">
+                        <a class="nav-link" href="/rooms">Номера <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-top: 60px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Лечение
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/health/diagnostic">Диагностика</a>
+                            <a class="dropdown-item" href="/health/reflect">Кабинет Рефлексотерапии</a>
+                            <a class="dropdown-item" href="/health/ozone">Озонотерапия</a>
+                            <a class="dropdown-item" href="/health/dentist">Стоматологический Кабинет</a>
+                            <a class="dropdown-item" href="/health/mineral">Минеральные Процедуры</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-top: 60px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Услуги
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/services/bar">Кафе и Бары</a>
+                            <a class="dropdown-item" href="/services/swimmingPool">Бассейн</a>
+                            <a class="dropdown-item" href="/services/sauna">Банный Комплекс</a>
+                            <a class="dropdown-item" href="/services/spa">SPA</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <a class="nav-link" href="/contacts">Контакты <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 53px; margin-left: 40px">
+                        <p><small>+375-17-97-20400</br>
+                            +375-17-97-21580 <span class="sr-only">(current)</span></small></p>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-left: 130px; margin-top: 60px">
+                        <div sec:authorize="hasRole('USER')">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                               data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">[[${#httpServletRequest.remoteUser}]]
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/user/myOrders">Мои заказы</a>
+                                <div class="dropdown-divider"></div>
+                                <div sec:authorize="hasRole('ADMIN')">
+                                    <a class="dropdown-item" href="/admin/orders">Просмотреть все заказы</a>
+                                    <a class="dropdown-item" href="/admin/users">Управление пользователями</a>
+                                    <a class="dropdown-item" href="/admin/routs/edit">Редактировать комнаты</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <a class="nav-link" href="/auth">Вход</a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 60px">
+                        <div sec:authorize="hasRole('USER')">
+                            <a class="nav-link" href="/logout">Выйти</a>
+                        </div>
+                    </li>
+                </ul>
+            </h5>
+        </div>
+    </nav>
+</div>
+</br>
+
+
+
+<p style="margin-left: 200px; margin-right: 200px; text-align: center">
+    <b>Ресепшн:</b>
+    </br>
+    Из Беларуси: 8 (01797) 21 580, из других стран - 8 10 375 1797 21 580
+    </br>
+    Информация по медицинским вопросам:
+    </br>
+    Из Беларуси: 8 (01797) 41 909, из других стран - 8 10 375 1797 41 909
+    </br>
+    </br>
+
+    <b>Консультация врача:</b>
+    </br>
+    e-mail: med@naroch.by
+    </br>
+    skype: san_med
+    </br>
+    </br>
+
+    <b>SPA-центр:</b>
+    </br>
+    Из Беларуси: 8 (01797) 41 219, из других стран - 8 10 375 1797 41 219
+    </br>
+    e-mail: spa@comp.by
+    </br>
+    </br>
+
+    <b>Бассейн с банным комплексом</b>
+    </br>
+    Из Беларуси: 8 (01797) 41 495, из других стран - 8 10 375 1797 41 495
+    </br>
+    </br>
+
+    <b>Приёмная:</b>
+    </br>
+    Из Беларуси: 8 (01797) 41 201,  факс: 8 (01797) 41 224
+    </br>
+    e-mail: san@comp.by
+    </br>
+    </br>
+
+    <b>Отдел кадров:</b>
+    </br>
+    8 (01797) 41 213
+    </br>
+    </br>
+
+    <b>Отдел снабжения:</b>
+    </br>
+    8 (01797) 41 236
+    </br>
+    E-mail: snab@naroch.by (отдел снабжения, НЕ для подачи заявок на бронирование)
+    </br>
+    </br>
+
+    <b>Кабинет функциональной диагностики (УЗИ)</b>
+    </br>
+    8 (01797) 21 404
+    </br>
+    </br>
+
+    <b>Лаборатория</b>
+    </br>
+    8 (01797) 41 498
+</p>
+
+</br>
+</br>
+
+</body>
+</html>
