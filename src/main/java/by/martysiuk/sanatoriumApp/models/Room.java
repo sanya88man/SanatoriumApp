@@ -1,6 +1,10 @@
 package by.martysiuk.sanatoriumApp.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -12,8 +16,12 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "Название номера не может быть пустым!")
+    @Size(min = 4, max = 30, message = "Название номера должно содержать 4-30 символов!")
     private String name;
 
+    @Min(value = 50, message = "Цена должна быть в пределах (50-999)!")
+    @Max(value = 999, message = "Цена должна быть в пределах (50-999)!")
     private double price;
 
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
@@ -49,6 +57,10 @@ public class Room {
                 ", price=" + price +
                 ", orders=" + orders +
                 '}';
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

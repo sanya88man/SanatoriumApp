@@ -30,11 +30,11 @@ public class RoomsController {
         return "rooms/showRooms";
     }
 
-    /*@GetMapping("/admin/rooms/edit")
+    @GetMapping("/admin/rooms/edit")
     public String showRoomsForEdit(Model model) {
         model.addAttribute("rooms", roomService.showRooms());
         return "rooms/showRoomsForEdit";
-    }*/
+    }
 
     @GetMapping("/admin/rooms/{id}/editRoom")
     public String editRoom(Model model, @PathVariable("id") int id) {
@@ -43,13 +43,14 @@ public class RoomsController {
     }
 
     @PatchMapping("/admin/rooms/{id}")
-    public String updateRoom(@ModelAttribute("room") @Valid Room room,
+    public String updateRoom(@PathVariable int id, @ModelAttribute("room") @Valid Room room,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "rooms/editRoom";
         }
+        room.setId(id);
         roomService.updateRoom(room);
-        return "redirect:/rooms";
+        return "redirect:/admin/rooms/edit";
     }
 
     /*@GetMapping("/user/routs/{id}")

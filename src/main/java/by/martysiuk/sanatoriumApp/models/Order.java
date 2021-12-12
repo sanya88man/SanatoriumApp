@@ -22,11 +22,11 @@ public class Order {
     private String leaveDate;*/
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id"/*, insertable = false, updatable = false*/)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Room room;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username"/*, insertable = false, updatable = false*/)
+    @JoinColumn(name = "username", insertable = false, updatable = false)
     private User user;
 
     public Order() {}
