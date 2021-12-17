@@ -25,11 +25,23 @@ create table users_roles (
 
 create table rooms (
   id int auto_increment not null,
-  name varchar(45) NOT NULL,
-  price DECIMAL(10,4),
-  PRIMARY KEY(id)
+  name varchar(45) not null ,
+  price decimal(10,4),
+  primary key(id)
 );
 
+create table orders (
+  id int auto_increment not null,
+  person_amount int not null,
+  arrive_date varchar(45),
+  days_amount int not null,
+  user_id int not null,
+  room_id int not null,
+
+  primary key (id),
+  foreign key (user_id) references users(id),
+  foreign key (room_id) references rooms(id)
+);
 
 
 

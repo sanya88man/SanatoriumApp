@@ -106,7 +106,7 @@
             <tr th:each="room: ${rooms}">
                 <td>
                     <a
-                            th:href="@{/user/routs/{id}(id=${room.getId()})}"
+                            th:href="@{/user/orders/{id}/new(id=${room.getId()})}"
                             th:text="${room.getName()}">
                     </a>
                 </td>

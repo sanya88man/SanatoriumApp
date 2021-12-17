@@ -1,41 +1,57 @@
 package by.martysiuk.sanatoriumApp.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Min(value = 1, message = "Кол-во человек должно быть в пределах (1-6)!")
+    @Max(value = 6, message = "Кол-во человек должно быть в пределах (1-6)!")
     @Column(name = "person_amount")
     private int personAmount;
 
+    @NotEmpty(message = "Название номера не может быть пустым!")
+    @Size(min = 4, max = 30, message = "Название номера должно содержать 4-30 символов!")
     @Column(name = "arrive_date")
     private String arriveDate;
 
+    @Min(value = 7, message = "Кол-во дней должно быть в пределах (7-21)!")
+    @Max(value = 21, message = "Кол-во дней должно быть в пределах (7-21)!")
     @Column(name = "days_amount")
     private int daysAmount;
 
-    /*@Column(name = "leave_date")
-    private String leaveDate;*/
+    @Column(name = "user_id")
+    private int userId;
+
+    @Column(name = "room_id")
+    private int roomId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "room_id", insertable = false, updatable = false)
     private Room room;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
     public Order() {}
 
-    public Order(int id, int personAmount, String arriveDate, int daysAmount, Room room, User user) {
+    public Order(int id, int personAmount, String arriveDate, int daysAmount, int userId, int roomId, Room room, User user) {
         this.id = id;
         this.personAmount = personAmount;
         this.arriveDate = arriveDate;
         this.daysAmount = daysAmount;
+        this.userId = userId;
+        this.roomId = roomId;
         this.room = room;
         this.user = user;
     }
@@ -63,6 +79,26 @@ public class Order {
                 ", room=" + room +
                 ", user=" + user +
                 '}';
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public int getId() {
