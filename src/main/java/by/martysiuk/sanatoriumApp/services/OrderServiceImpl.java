@@ -1,6 +1,8 @@
 package by.martysiuk.sanatoriumApp.services;
 
 import by.martysiuk.sanatoriumApp.models.Order;
+import by.martysiuk.sanatoriumApp.models.Room;
+import by.martysiuk.sanatoriumApp.models.User;
 import by.martysiuk.sanatoriumApp.repositories.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void saveOrder(Order order) {
+    public void saveOrder(Order order, User user, Room room) {
+        order.setUserId(user.getId());
+        order.setRoomId(room.getId());
+        order.setUser(user);
+        order.setRoom(room);
         orderRepo.save(order);
     }
 

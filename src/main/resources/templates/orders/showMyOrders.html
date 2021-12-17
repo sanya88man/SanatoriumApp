@@ -101,7 +101,7 @@
         <th>Дата прибытия</th>
         <th>Кол-во дней</th>
         <th>Кол-во людей</th>
-        <th>Цена(BYN)</th>
+        <th>Стоимость (BYN)</th>
         <th>Отмена заказа</th>
       </tr>
       </thead>
@@ -111,7 +111,7 @@
         <td th:text="${order.getArriveDate()}"></td>
         <td th:text="${order.getDaysAmount()}"></td>
         <td th:text="${order.getPersonAmount()}"></td>
-        <td th:text="${order.getRoom().getPrice()}"></td>
+        <td th:text="${order.getRoom().getPrice() * order.getPersonAmount() * order.getDaysAmount()}"></td>
         <td>
           <form th:action="@{/user/orders/delete}"
                 th:method="delete"

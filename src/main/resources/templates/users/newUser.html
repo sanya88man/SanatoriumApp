@@ -111,16 +111,16 @@
       <div class="form-group row">
         <label class="col-4 col-form-label">Имя Пользователя: </label>
         <div class="col-8">
-          <input type="text" th:field="*{username}" class="form-control"
-                 required minlength="4" maxlength="20"/>
+          <input type="text" th:field="*{username}" class="form-control" id="username"/>
+          <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</div>
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-4 col-form-label">Пароль: </label>
         <div class="col-8">
-          <input type="password" th:field="*{password}" class="form-control"
-                 required minlength="4" maxlength="20"/>
+          <input type="password" th:field="*{password}" class="form-control" id="password"/>
+          <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">pass error</div>
         </div>
       </div>
 

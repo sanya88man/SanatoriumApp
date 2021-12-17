@@ -42,12 +42,3 @@ create table orders (
   foreign key (user_id) references users(id),
   foreign key (room_id) references rooms(id)
 );
-
-
-
-
-
-
-/*create unique index users_username_index
-    on users (username);*/
-

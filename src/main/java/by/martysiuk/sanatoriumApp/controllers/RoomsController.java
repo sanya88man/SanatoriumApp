@@ -50,10 +50,4 @@ public class RoomsController {
         roomService.updateRoom(room);
         return "redirect:/admin/rooms/edit";
     }
-
-    /*@GetMapping("/user/rooms/{id}")
-    public String showRoom(@PathVariable("id") int id, Model model) {
-        model.addAttribute("room", roomService.showRoom(id));
-        return "rooms/showRoom";
-    }*/
 }

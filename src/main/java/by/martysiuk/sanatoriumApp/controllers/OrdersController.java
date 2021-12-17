@@ -1,7 +1,6 @@
 package by.martysiuk.sanatoriumApp.controllers;
 
 import by.martysiuk.sanatoriumApp.models.Order;
-import by.martysiuk.sanatoriumApp.models.Room;
 import by.martysiuk.sanatoriumApp.models.User;
 import by.martysiuk.sanatoriumApp.services.OrderService;
 import by.martysiuk.sanatoriumApp.services.RoomService;
@@ -35,14 +34,9 @@ public class OrdersController {
         if (bindingResult.hasErrors()) {
             return "orders/showOrder";
         }
-        User user = userService.showUserByUsername(httpServletRequest.getRemoteUser());
-        Room room = roomService.showRoom(id);
-
-        order.setUserId(user.getId());
-        order.setRoomId(room.getId());
-        order.setUser(user);
-        order.setRoom(room);
-        orderService.saveOrder(order);
+        orderService.saveOrder(order,
+                userService.showUserByUsername(httpServletRequest.getRemoteUser()),
+                roomService.showRoom(id));
         return "redirect:/user/myOrders";
     }
 

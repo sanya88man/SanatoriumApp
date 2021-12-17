@@ -1,6 +1,8 @@
 package by.martysiuk.sanatoriumApp.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
@@ -10,8 +12,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "Имя пользователя не может быть пустым!")
+    @Size(min = 4, max = 30, message = "Имя пользователя должно содержать 4-30 символов!")
     private String username;
 
+    @NotEmpty(message = "Пароль не может быть пустым!")
+    @Size(min = 4, max = 80, message = "Пароль должен содержать 4-80 символов!")
     private String password;
 
     private boolean enabled;
