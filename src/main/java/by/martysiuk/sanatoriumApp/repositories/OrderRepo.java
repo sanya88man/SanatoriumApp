@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface OrderRepo extends JpaRepository<Order, Integer> {
-    @Query("select r from Order r where r.userId = :userId")
+    @Query("select o from Order o where o.userId = :userId")
     List<Order> findMyOrdersByUserId(int userId);
 
     @Modifying
