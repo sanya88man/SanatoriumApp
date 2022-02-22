@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Set;
 
 @Service("userDetailsService")
-public class MyUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepo userRepo;
 
     @Autowired
-    public MyUserDetailsService(UserRepo userRepo) {
+    public UserDetailsServiceImpl(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 

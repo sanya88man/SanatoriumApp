@@ -9,11 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface OrderRepo extends JpaRepository<Order, Integer> {
-    @Query("select o from Order o where o.userId = :userId")
-    List<Order> findMyOrdersByUserId(int userId);
+    List<Order> findAllByUserId(int id);
 
     @Modifying
     @Transactional
-    @Query("delete from Order o where o.id = :id")
+    @Query("delete from Order o where o.id = :id") //не удаляет родительские
     void deleteByID(int id);
 }

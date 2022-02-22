@@ -2,30 +2,32 @@ package by.martysiuk.sanatoriumApp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/health")
 public class HealthController {
-    @GetMapping("/health/dentist")
+    @GetMapping("/dentist")
     public String dentist() {
         return "health/dentist";
     }
 
-    @GetMapping("/health/diagnostic")
+    @GetMapping("/diagnostic")
     public String diagnostic() {
         return "health/diagnostic";
     }
 
-    @GetMapping("/health/mineral")
+    @GetMapping("/mineral")
     public String mineral() {
         return "health/mineral";
     }
 
-    @GetMapping("/health/reflect")
+    @GetMapping("/reflect")
     public String reflect() {
         return "health/reflect";
     }
 
-    @GetMapping("/health/ozone")
+    @GetMapping("/ozone")
     public String ozone() {
         return "health/ozone";
     }

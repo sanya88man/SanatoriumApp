@@ -108,7 +108,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>by.martysiuk.sanatoriumAppApp.Application</mainClass>
+                            <mainClass>by.martysiuk.sanatoriumApp.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

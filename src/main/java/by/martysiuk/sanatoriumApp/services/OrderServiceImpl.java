@@ -30,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOrder(int id) {
+        //orderRepo.deleteById(id);//удаляет родительские
         orderRepo.deleteByID(id);
     }
 
@@ -44,6 +45,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> showMyOrders(int id) {
-        return orderRepo.findMyOrdersByUserId(id);
+        return orderRepo.findAllByUserId(id);
     }
 }
